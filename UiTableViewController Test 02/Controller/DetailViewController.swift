@@ -10,9 +10,11 @@ import UIKit
 import MapKit
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
-
+    
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var cellImageView: UIImageView!
+    var counter = 1
+    var direction = 1
     
     var cellImage: String = ""
     var name: String = ""
@@ -30,7 +32,47 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cellImageView.image = UIImage(named: cellImage)
         self.title = name
     }
-
+    
+    //전화연결
+    @IBAction func call(_ sender: Any) {
+        let myAlert = UIAlertController(title: tel1, message: "연결하시겠습니까?", preferredStyle: .actionSheet)
+        
+        let okAction = UIAlertAction(title: "연결", style: .default, handler: {(action:UIAlertAction) -> Void in
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: {(action:UIAlertAction) -> Void in
+            
+        })
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        
+        present(myAlert, animated: true, completion: nil)
+    }
+    
+    //이미지 바꾸기
+    @IBAction func imgC(_ sender: Any) {
+        if counter == 5{
+            direction = 0
+        }
+            
+        else if counter == 1{
+            direction = 1
+        }
+        
+        
+        if direction == 1{
+            counter = counter + 1
+        }
+            
+        else if direction == 0{
+            counter = counter - 1
+        }
+        
+        cellImageView.image = UIImage(named: "0\(counter).png")
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -40,7 +82,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath)
@@ -59,11 +101,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.configure(location: local1)
             return cell
         }
-    } 
-
+    }
+    
     //
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailMapView" {
@@ -76,6 +117,5 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
-
+    
 }
-

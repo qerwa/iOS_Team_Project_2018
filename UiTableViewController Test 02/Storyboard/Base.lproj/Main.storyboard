@@ -222,10 +222,16 @@
                         <viewLayoutGuide key="safeArea" id="2i8-vt-lhr"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="nK9-W4-yUK"/>
+                    <navigationItem key="navigationItem" id="nK9-W4-yUK">
+                        <barButtonItem key="rightBarButtonItem" title="change" id="wkl-D9-CCC">
+                            <connections>
+                                <action selector="change:" destination="rTk-ZX-IXD" id="7SE-cb-AiZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="cellImageView" destination="9YQ-Gp-nb7" id="gcz-ID-ghm"/>
+                        <outlet property="cellImageView" destination="9YQ-Gp-nb7" id="hHn-nN-iq5"/>
                         <outlet property="detailTableView" destination="Bgr-FQ-YRN" id="vwU-gV-Ry7"/>
                     </connections>
                 </viewController>
